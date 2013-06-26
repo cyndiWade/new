@@ -68,21 +68,14 @@ class supervisorAction extends Action{
 	 * 监理师类型
 	 */
 	public function consult() {
-		$type = $this->_get('type');
-		switch ($type) {
-			case '1':
-				$field = 'houser';
-				break;
-			case '2':
-				$field = 'worker';
-				break;
-			case '3':
-				$field = 'why';
-				break;
-			default:
-				$field = 'houser';
-		}
+		$field = $this->_get('type');
+
+		$arrField = array('houser','worker','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other');
+
+		if (!in_array($field,$arrField)) $field = 'houser';
+		
 		$html = M()->table('yjl_project_supervision')->getField($field);
+		
 		$this->assign('html',$html);
 		$this->display();
 	}
