@@ -53,12 +53,13 @@
 		  <!--项目列表!!!! -->
 		<volist name="projectList" id="vo">
 		<div class="supeivising_bottom_one">
-			<div class="super_t parent"><img src="{$url}{$vo[img][0]}" /></div>
+			<div class="super_t parent">
+				<a href="#" onclick="openimg('{$url}{$vo[img][0]}', 600,450);return false;" title="点击查看大图"><img src="{$url}{$vo[img][0]}" /></a></div>
 			<div class="super_t children">
-				<a href=""><img src="{$url}{$vo[img][1]}" /></a>
-		        <a href=""><img src="{$url}{$vo[img][2]}" /></a>
-				<a href=""><img src="{$url}{$vo[img][3]}" /></a>
-		 		<a href=""><img src="{$url}{$vo[img][4]}" /></a>
+				<a href="#" onclick="openimg('{$url}{$vo[img][1]}', 600,450);return false;" title="点击查看大图"><img src="{$url}{$vo[img][1]}" /></a>
+		        <a href="#" onclick="openimg('{$url}{$vo[img][2]}', 600,450);return false;" title="点击查看大图"><img src="{$url}{$vo[img][2]}" /></a>
+				<a href="#" onclick="openimg('{$url}{$vo[img][3]}', 600,450);return false;" title="点击查看大图"><img src="{$url}{$vo[img][3]}" /></a>
+		 		<a href="#" onclick="openimg('{$url}{$vo[img][4]}', 600,450);return false;" title="点击查看大图"><img src="{$url}{$vo[img][4]}" /></a>
 			</div>
 			<div class="super_txt">
 				<h3>{$vo.title}</h3>
