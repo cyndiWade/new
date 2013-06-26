@@ -61,8 +61,19 @@ class supervisorAction extends Action{
 	 * 监理师类型
 	 */
 	public function consult() {
+<<<<<<< HEAD
 		$type = $this->_get('type');
 		$html = M()->table('yjl_project_supervision')->getField($type);
+=======
+		$field = $this->_get('type');
+
+		$arrField = array('houser','worker','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other');
+
+		if (!in_array($field,$arrField)) $field = 'houser';
+		
+		$html = M()->table('yjl_project_supervision')->getField($field);
+		
+>>>>>>> 1aa5d8f6de0ade9db5460b13231d74ad86f334bb
 		$this->assign('html',$html);
 		$this->display();
 	}
