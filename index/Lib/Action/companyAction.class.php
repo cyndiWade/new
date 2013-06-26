@@ -30,11 +30,6 @@ class companyAction extends Action{
 			$this->error('参数不正确，没有该公司！');
 		}
 		
-		$company ['feature_info'] = htmlspecialchars_decode($company['feature_info']);
-		$company ['price_info'] = htmlspecialchars_decode($company['price_info']);
-		$company ['process_info'] = htmlspecialchars_decode($company['process_info']);
-		$company ['case_info'] = htmlspecialchars_decode($company['case_info']);
-		$company ['contact_info'] = htmlspecialchars_decode($company['contact_info']);
 		$this->assign('company', $company);
 		$this->display();
 	}
