@@ -7,18 +7,12 @@ class supervisorAction extends Action{
 
 		$f = max(1, intval($_GET['f']));
 		
-		//foreach ($data['data'] AS $key=>$val) {
-		//	$data['data'][$key]['img'] = M()->table('yjl_project_img AS m')->join('yjl_project AS p ON p.pid=m.pid')->where(array('p.sid'=>$val['id']))->order('m.sort ASC')->limit('6')->select();
-		//}
 		$data = $M->getPageList($f);
 
 		//获取当前监理师下项目图片数据
-		//$sid = 	$data['data'][0]['id'];
-		//$imgList = M()->table('yjl_project_img AS m')->join('yjl_project AS p ON p.pid=m.pid')->where(array('p.sid'=>$sid))->order('m.sort ASC')->limit('6')->select();
-		foreach ($data['data'] AS $key=>$val) {
-			$data['data'][$key]['img'] = M()->table('yjl_project_img AS m')->join('yjl_project AS p ON p.pid=m.pid')->where(array('p.sid'=>$val['id']))->order('m.sort ASC')->limit('6')->select();
-		}
-		
+		$sid = 	$data['data'][0]['id'];
+		$imgList = M()->table('yjl_project_img AS m')->join('yjl_project AS p ON p.pid=m.pid')->where(array('p.sid'=>$sid))->order('m.sort ASC')->limit('6')->select();
+
 		$this->assign('url',C('TMPL_PARSE_STRING.__IMAGES__'));
 		$this->assign('imgList',$imgList);
 		
@@ -47,14 +41,13 @@ class supervisorAction extends Action{
 		//获取当前监理师下所有项目列表
 		$pid = $supervisor['id'];
 		$allData = M()->table('yjl_project AS p')->join('yjl_project_img AS m ON p.pid=m.pid')->where(array('p.sid'=>$pid))->order('p.pid ASC,m.sort ASC')->select();
-	
 		$projectList = array();
 		foreach ($allData AS $key=>$val) {
 			$projectList[$val['pid']]['title'] = $val['title'];
 			$projectList[$val['pid']]['content'] = $val['content'];
 			$projectList[$val['pid']]['img'][] = $val['url'];
 		}
-		
+
 		$this->assign('url',C('TMPL_PARSE_STRING.__IMAGES__'));
 		$this->assign('projectList',$projectList);
 		

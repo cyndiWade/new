@@ -21,7 +21,6 @@ class ProjectAction extends baseAction{
 			
 		$list = $Project->show($sid);	//获取当前用户下的项目列表
 
-
 		setDateTime($list,'create_time');	//格式化日期
 		//HTML输出
 		$ass['list'] = $list;
@@ -36,7 +35,7 @@ class ProjectAction extends baseAction{
 		$sid = $_GET['sid'];				//监理师id
 		$cid = $_GET['cid'];				//所属公司id
 		$Project = D('Project');			//项目表
-		$Supervisor = D('supervisor');		//监理师表
+		$Supervisor = D('supervisor');	//监理师表
 	
 		//操作用户为空验证
 		if (empty($sid) || $sid=='')$this->error('操作用户不得为空');	
@@ -96,8 +95,8 @@ class ProjectAction extends baseAction{
 		
 		//数据显示
 		$info = $Project->getOne(array('pid'=>$pid));			//获取当前项目数据
-		$imgs = $ProjectImg->where(array('pid'=>$info['pid']))->select();	//获取当前项目下图片数据
-
+		$imgs = $ProjectImg->show(array('pid'=>$info['pid']));	//获取当前项目下图片数据
+		
 		$this->assign('info',$info);
 		$this->assign('imgs',$imgs);
 		$this->display();	
