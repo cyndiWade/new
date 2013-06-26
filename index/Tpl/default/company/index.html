@@ -5,6 +5,10 @@
 	height:50px;
 	margin:0 5px 0 0;
 }
+p.fontstyle {
+	text-indent:35px;
+	letter-spacing:5px;
+}
 </style>
 <body>
 <div class="select_bg">
@@ -17,7 +21,7 @@
                     <div class="services_left"><a href="{:U('company/company?cid=')}{$val.id}"><img src="__IMAGES__{$val.logo}" width="160" heigth="160" /></a></div>
                     <div class="services_right">
                         <h2><a href="{:U('company/company?cid=')}{$val.id}">{$val.name}</a></h2>
-                        <p>{$val.info}</p>
+                        <p class="fontstyle">{$val.info}</p>
                		<div class="services_rightt">
                          <img src="__ROOT__/statics/index/images/anli.gif" />		
 						 
