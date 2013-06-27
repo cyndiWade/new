@@ -1,10 +1,5 @@
 <include file='public:header' />
 
-<link href="__ROOT__/statics/css/lightbox/css/lightbox.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="__ROOT__/statics/js/lightbox/prototype.js"></script>
-<script type="text/javascript" src="__ROOT__/statics/js/lightbox/scriptaculous.js?load=effects,builder"></script>
-<script type="text/javascript" src="__ROOT__/statics/js/lightbox/lightbox.js"></script>
-
 <style>
 .parent img {
 	width:201px;
@@ -60,12 +55,12 @@
 		<volist name="projectList" id="vo">
 		<div class="supeivising_bottom_one">
 			<div class="super_t parent">
-				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" title="点击查看大图"><img id="middle_image_{$vo.pid}" src="{$url}{$vo[img][0]}" /></a></div>
+				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" title="点击查看大图 "><img id="middle_image_{$vo.pid}" src="{$url}{$vo[img][0]}" /></a></div>
 			<div class="super_t children">
-				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图"><img src="{$url}{$vo[img][0]}" /></a>
-		        <a href="{$url}{$vo[img][1]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图"><img src="{$url}{$vo[img][1]}" /></a>
-				<a href="{$url}{$vo[img][2]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图"><img src="{$url}{$vo[img][2]}" /></a>
-		 		<a href="{$url}{$vo[img][3]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图"><img src="{$url}{$vo[img][3]}" /></a>
+				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][0]}" /></a>
+		        <a href="{$url}{$vo[img][1]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][1]}" /></a>
+				<a href="{$url}{$vo[img][2]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][2]}" /></a>
+		 		<a href="{$url}{$vo[img][3]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][3]}" /></a>
 			</div>
 			<div class="super_txt">
 				<h3>{$vo.title}</h3>

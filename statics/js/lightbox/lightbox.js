@@ -132,19 +132,6 @@ Lightbox.prototype = {
 		objBody.appendChild(Builder.node('div',{id:'overlay'}));
 	
         objBody.appendChild(Builder.node('div',{id:'lightbox'}, [
-            Builder.node('div', {id:'imageDataContainer'},
-                Builder.node('div',{id:'imageData'}, [
-                    Builder.node('div',{id:'imageDetails'}, [
-                        Builder.node('span',{id:'caption'}),
-                        Builder.node('span',{id:'numberDisplay'})
-                    ]),
-                    Builder.node('div',{id:'bottomNav'},
-                        Builder.node('a',{id:'bottomNavClose', href: '#' },
-                            Builder.node('img', { src: LightboxOptions.fileBottomNavCloseImage })
-                        )
-                    )
-                ])
-            ),
 			Builder.node('div',{id:'outerImageContainer'}, 
                 Builder.node('div',{id:'imageContainer'}, [
                     Builder.node('img',{id:'lightboxImage'}), 
@@ -155,6 +142,19 @@ Lightbox.prototype = {
                     Builder.node('div',{id:'loading'}, 
                         Builder.node('a',{id:'loadingLink', href: '#' }, 
                             Builder.node('img', {src: LightboxOptions.fileLoadingImage})
+                        )
+                    )
+                ])
+            ),
+			Builder.node('div', {id:'imageDataContainer'},
+                Builder.node('div',{id:'imageData'}, [
+                    Builder.node('div',{id:'imageDetails'}, [
+                        Builder.node('span',{id:'caption'}),
+                        Builder.node('span',{id:'numberDisplay'})
+                    ]),
+                    Builder.node('div',{id:'bottomNav'},
+                        Builder.node('a',{id:'bottomNavClose', href: '#' },
+                            Builder.node('img', { src: LightboxOptions.fileBottomNavCloseImage })
                         )
                     )
                 ])
@@ -189,7 +189,7 @@ Lightbox.prototype = {
 
         document.observe('click', (function(event){
             var target = event.findElement('a[rel^=lightbox]') || event.findElement('area[rel^=lightbox]');
-            if (target && target.title != '点击查看中图') {
+            if (target && target.title != '点击查看中图 ') {
                 event.stop();
                 this.start(target);
             }
@@ -226,7 +226,9 @@ Lightbox.prototype = {
             while (this.imageArray[imageNum][0] != imageLink.href) { imageNum++; }
 			
 			//删除第一张重复的图
-			this.imageArray.shift();
+			if (this.imageArray[imageNum][1] == '点击查看大图 ') {
+				this.imageArray.shift();
+			}
         }
 
         // calculate top and left offset for the lightbox 
