@@ -224,6 +224,9 @@ Lightbox.prototype = {
                 uniq();
             
             while (this.imageArray[imageNum][0] != imageLink.href) { imageNum++; }
+			
+			//删除第一张重复的图
+			this.imageArray.shift();
         }
 
         // calculate top and left offset for the lightbox 
