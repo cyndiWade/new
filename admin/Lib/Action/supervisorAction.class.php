@@ -1,5 +1,12 @@
 <?php 
+
+/**
+ * 监理师管理
+ * @author Administrator
+ *
+ */
 class supervisorAction extends baseAction{
+	
 	function index(){
 		$big_menu = array('javascript:window.top.art.dialog({id:\'add\',iframe:\'?m=supervisor&a=add\', title:\'添加监理师\', width:\'700px\', height:\'600px\', lock:true}, function(){var d = window.top.art.dialog({id:\'add\'}).data.iframe;var form = d.document.getElementById(\'dosubmit\');form.click();return false;}, function(){window.top.art.dialog({id:\'add\'}).close()});void(0);', '添加监理师');
 		$M = D('supervisor');

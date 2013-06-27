@@ -20,9 +20,8 @@ class ProjectAction extends baseAction{
 		$Project = D('Project');	//项目表
 			
 		$list = $Project->show($sid);	//获取当前用户下的项目列表
-
-
 		setDateTime($list,'create_time');	//格式化日期
+		
 		//HTML输出
 		$ass['list'] = $list;
 		$ass['big_menu']=$big_menu;
@@ -51,8 +50,8 @@ class ProjectAction extends baseAction{
 			$pid =  $Project->add();				//添加数据
 			if ($pid) {	
 				$Supervisor->change(array('id'=>$sid),'add');	//监理师项目加1
-				$this->imgUploads($pid,$cid);	//执行上传文件
-				$this->success('添加成功！');
+				//$this->imgUploads($pid,$cid);	//执行上传文件
+				$this->success('添加成功！','?s=/Project/edit/pid/'.$pid.'/cid/'.$cid);
 			} else {
 				$this->error('添加失败请重新尝试！');
 			}			
@@ -66,7 +65,7 @@ class ProjectAction extends baseAction{
 	public function edit() {
 		$pid = $_GET['pid'];				//项目id
 		$cid = $_GET['cid'];				//所属公司id
-		
+
 		$Project = D('Project');					//项目表
 		$ProjectImg = D('ProjectImg');		//项目图片表
 		
@@ -80,7 +79,7 @@ class ProjectAction extends baseAction{
 			if (empty($_POST['content'])) $this->error('请填写项目描述');	
 			
 			//执行图片上传操作
-			$this->imgUploads($pid,$cid);	
+		//	$this->imgUploads($pid,$cid);	
 		
 			//执行排序修改
 			foreach ($_POST['sort'] AS $key=>$val) {
@@ -98,6 +97,8 @@ class ProjectAction extends baseAction{
 		$info = $Project->getOne(array('pid'=>$pid));			//获取当前项目数据
 		$imgs = $ProjectImg->where(array('pid'=>$info['pid']))->select();	//获取当前项目下图片数据
 
+		$this->assign('pid',$pid);
+		$this->assign('cid',$cid);
 		$this->assign('info',$info);
 		$this->assign('imgs',$imgs);
 		$this->display();	
@@ -148,34 +149,62 @@ class ProjectAction extends baseAction{
 	private function upload() {
 		import('ORG.Net.UploadFile');
 		$upload = new UploadFile();// 实例化上传类
-		$upload->maxSize  = 6000000 ;// 设置附件上传大小
-		$upload->allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-		$upload->savePath =  ROOT_PATH .'/data/uploads/';// 设置附件上传目录
+		$upload->maxSize  = 60000001 ;// 设置附件上传大小
+	//	$upload->allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+		$upload->savePath =  C('TMPL_PARSE_STRING.__IMAGES__');// 设置附件上传目录
 		$upload->autoSub = true;
 		$upload->subType = 'date';
 		$upload->saveRule = 'uniqid';
-	
+
 		if(!$upload->upload()) {// 上传错误提示错误信息
-			//$this->error($upload->getErrorMsg());
+			$info =  false;
 		}else{// 上传成功 获取上传文件信息
-			$info =  $upload->getUploadFileInfo();
+			$info = $upload->getUploadFileInfo();
 		}
-	
 		return $info;
+
 	}
 	
 	//执行上传图片和保存图片文件
-	private function imgUploads($pid,$cid){
+	public function imgUploads(){
+		$pid = $this->_post('pid');
+		$cid = $this->_post('cid');
+
 		$ProjectImg = D('ProjectImg');		//项目图片表
 		//添加图片数据
-		$all = $this->upload();	//执行上传
-		if (!$all) return false;
-		foreach ($all AS $k=>$v) {	//写入数据库
-			$ProjectImg->pid = $pid;
-			$ProjectImg->cid = $cid;
-			$ProjectImg->url = $v['savename'];
-			$ProjectImg->add();
+		$files = $this->upload();	//执行上传
+		if ($files) {	
+			$ProjectImg->pid = $pid;	//项目Id
+			$ProjectImg->cid = $cid;	//公司ID
+			$ProjectImg->url = $files[0]['savename'];	//图片保存路径
+			$is_ok = $ProjectImg->add();		//写入数据库
+			
+			if ($is_ok) {
+				$return = array(
+					'success' => '1',
+					'info' => '上传成功',
+					"data" => array(
+						'mid' => $is_ok,
+						'file' =>C('TMPL_PARSE_STRING.__IMAGES__').$files[0]['savename'],
+					)
+				);
+			} else {
+				$return = array(
+					'info' => '保存文件失败',
+					"data" => array()
+				);
+			}
+		
+		} else {
+			$return = array(
+					'info' => '上传文件不存在',
+					"data" => array()
+			);
 		}
+
+		exit(json_encode($return));
+
+		//if (!$files) return false;
 	}
 	
 }
