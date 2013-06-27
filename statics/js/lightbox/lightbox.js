@@ -263,6 +263,10 @@ Lightbox.prototype = {
 
         imgPreloader.onload = (function(){
             this.lightboxImage.src = this.imageArray[this.activeImage][0];
+			//重新设置图片尺寸
+			imgPreloader.height = 600 * imgPreloader.height / imgPreloader.width;
+			imgPreloader.width = 600;
+			
             this.resizeImageContainer(imgPreloader.width, imgPreloader.height);
         }).bind(this);
         imgPreloader.src = this.imageArray[this.activeImage][0];
