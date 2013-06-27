@@ -50,6 +50,7 @@ class supervisorAction extends Action{
 	
 		$projectList = array();
 		foreach ($allData AS $key=>$val) {
+			$projectList[$val['pid']]['pid'] = $val['pid'];
 			$projectList[$val['pid']]['title'] = $val['title'];
 			$projectList[$val['pid']]['content'] = $val['content'];
 			$projectList[$val['pid']]['img'][] = $val['url'];
