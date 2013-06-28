@@ -24,7 +24,7 @@ p.fontstyle {
                          <img src="__ROOT__/statics/index/images/anli.gif" />		
 						 
                          <volist name="val[img]" id="img" >
-                         <a href="#" onclick="openimg('{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}', 600,450);return false;" title="点击查看大图"><img src="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" class="imgList"/></a>
+                         <a href="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" class="imgList"/></a>
 						</volist>
 						
                     	</div>
