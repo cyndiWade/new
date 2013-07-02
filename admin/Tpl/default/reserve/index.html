@@ -10,6 +10,7 @@
                 <th width=60>联系人</th>
                 <th width=60>电话</th>
 				<th width=80>期望见面时间</th>
+				<th width=80>所属区域</th>
 				<th>详细内容</th>
 				<th width=80>下单时间</th>
 				<th width=60>状态</th>
@@ -25,6 +26,7 @@
             <td align="center">{$val.name}</td>
 			<td align="left">{$val.telephone}</td>
 			<td align="center">{$val.expect_time}</td>
+			<td align="center">{$val.region_area}</td>
 			<td align="center">{$val.message}</td>
 			<td align="left">{$val.addtime}</td>
             <td align="center" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /><if condition="$val.status eq 1">已处理<else />未处理</if></td>
