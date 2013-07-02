@@ -42,7 +42,7 @@ class supervisorModel extends Model{
 		$this->field('yjl_company.name as company,yjl_company.region,yjl_supervisors.*');
 		$this->join('yjl_company ON yjl_company.id = yjl_supervisors.cid');
 		$this->where("profession = $f");
-		$this->order('addtime DESC')->page($page.','.$length);
+		$this->order('reserve_month DESC,reserve_total DESC')->page($page.','.$length);
 		$info = $this->select();
 
 		$data['data']=$info;

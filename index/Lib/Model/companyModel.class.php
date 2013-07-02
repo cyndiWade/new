@@ -20,7 +20,7 @@ class companyModel extends Model{
 		$length = 10;
 
 		$count=$this->where("status = 1")->count();
-		$info=$this->where("status = 1")->order('addtime DESC')->page($page.','.$length)->select();
+		$info=$this->where("status = 1")->order('reserve_month DESC,reserve_total DESC')->page($page.','.$length)->select();
 
 		$data['data']['data']=$info;
 		$data['data']['length']=$length;
