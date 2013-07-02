@@ -30,13 +30,15 @@ class reserveAction extends Action{
 			if (empty($param['name'])) {
 				$this->error('请填写您的名字！');
 			}
+			/*
 			if (empty($param['telephone'])) {
 				$this->error('请填写您的电话！');
-			}
+			}*/
 			
 			$param['sid'] = $sid;
 			$param['cid'] = $cid;
 			$param['addtime'] = time();
+			$param['region_area'] = D('Area')->getName($param['region'], $param['area']);
 			if ($M->add($param)) {
 				if ($sid > 0) {
 					$data = array();
@@ -67,6 +69,7 @@ class reserveAction extends Action{
 				$this->error('信息提交失败！');
 			}
 		} else {
+			$this->assign('regionHtml', D('Area')->getHtml());
 			$this->display();
 		}
 		
