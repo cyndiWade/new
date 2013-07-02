@@ -75,7 +75,7 @@ class supervisorAction extends Action{
 
 		if (!in_array($field,$arrField)) $field = 'houser';
 		
-		if (in_array($field,array('houser', 'why', 'green'))) {
+		if (in_array($field,array('houser', 'why', 'green','contact'))) {
 			$html = M()->table('yjl_project_supervision')->getField($field);
 			
 			$this->assign('html',$html);
