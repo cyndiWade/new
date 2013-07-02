@@ -71,7 +71,7 @@ class supervisorAction extends Action{
 	public function consult() {
 		$field = $this->_get('type');
 
-		$arrField = array('houser','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other');
+		$arrField = array('houser','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other','green');
 
 		if (!in_array($field,$arrField)) $field = 'houser';
 		
