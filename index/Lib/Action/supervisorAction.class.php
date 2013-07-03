@@ -71,11 +71,11 @@ class supervisorAction extends Action{
 	public function consult() {
 		$field = $this->_get('type');
 
-		$arrField = array('houser','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other','green','contact');
+		$arrField = array('houser','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other','green','contact','recruit');
 
 		if (!in_array($field,$arrField)) $field = 'houser';
 		
-		if (in_array($field,array('houser', 'why', 'green','contact'))) {
+		if (in_array($field,array('houser', 'why', 'green','contact','recruit'))) {
 			$html = M()->table('yjl_project_supervision')->getField($field);
 			
 			$this->assign('html',$html);
