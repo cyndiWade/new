@@ -30,10 +30,17 @@ class reserveAction extends Action{
 			if (empty($param['name'])) {
 				$this->error('请填写您的名字！');
 			}
-			/*
+			
 			if (empty($param['telephone'])) {
 				$this->error('请填写您的电话！');
-			}*/
+			}
+			if (empty($param['region'])) {
+				$this->error('请选择区域！');
+			}
+			if (empty($param['area'])) {
+				$this->error('请选择小区范围！');
+			}
+			
 			
 			$param['sid'] = $sid;
 			$param['cid'] = $cid;
