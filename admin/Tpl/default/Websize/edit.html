@@ -7,7 +7,7 @@
     <div class="col-tab">
       <ul class="tabBut cu-li">
 		
-		<assign name="quantity" value="16" />
+		<assign name="quantity" value="17" />
         <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',{$quantity},1);">家装监理师</li>
    	   	<li id="tab_setting_2" class="" onclick="SwapTab('setting','on','',{$quantity},2);">工装监理师</li>
 		<li id="tab_setting_3" class="" onclick="SwapTab('setting','on','',{$quantity},3);">为什么选择监理师傅</li>
@@ -25,6 +25,7 @@
 		<li id="tab_setting_14" class="" onclick="SwapTab('setting','on','',{$quantity},14);">绿色易监理</li>
 		<li id="tab_setting_15" class="" onclick="SwapTab('setting','on','',{$quantity},15);">联系我们</li>
 		<li id="tab_setting_16" class="" onclick="SwapTab('setting','on','',{$quantity},16);">诚聘精英</li>
+		<li id="tab_setting_17" class="" onclick="SwapTab('setting','on','',{$quantity},17);">价格</li>
       </ul>
 	  
      <div id="div_setting_1" class="contentList pad-10">
@@ -90,6 +91,10 @@
 	<div id="div_setting_16" class="contentList pad-10" style="display:none;">
 		<textarea id="KE_16" name="recruit" style="width:820px;height:300px;">{$info.recruit}</textarea>
 	</div>
+	
+	<div id="div_setting_17" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_17" name="money" style="width:820px;height:300px;">{$info.money}</textarea>
+	</div>
 
       </div>
       <div class="bk15"></div>
@@ -118,7 +123,8 @@ function KE_show(id) {
 }
 
 function setEdit() {
-	for (var i=1;i<=$('.col-tab').find('div').size();i++) {
+	var length = $('.col-tab').find('div').size();
+	for (var i=1;i<=length;i++) {
 		var id = 'KE_' + i;
 		KE_show(id);
 	}
