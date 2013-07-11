@@ -69,19 +69,26 @@ class supervisorAction extends Action{
 	 * 监理师类型
 	 */
 	public function consult() {
-		$field = $this->_get('type');
+		$type = $this->_get('type');
+		$DB = M();
+	
+		//字段信息
+		$fielsInfo = $DB->query("select COLUMN_NAME from information_schema.COLUMNS where table_name = 'yjl_project_supervision' and table_schema = 'yjl2' ");
+		$arrField = array();
+		foreach ($fielsInfo AS &$val) {
+			array_push($arrField,$val['COLUMN_NAME']);
+		}
+		//当前URL定位的字段名
+		$field = $arrField[$type];
+		if (empty($field)) $field = 'houser';
 
-		$arrField = array('houser','why','multiple_shop','office_building','laboratory','hotel','catering','factory','finance','school','building','other','green','contact','recruit','money');
-
-		if (!in_array($field,$arrField)) $field = 'houser';
-		
 		if (in_array($field,array('houser', 'why', 'green','contact','recruit'))) {
-			$html = M()->table('yjl_project_supervision')->getField($field);
+			$html = $DB->table('yjl_project_supervision')->getField($field);
 			
 			$this->assign('html',$html);
 			$this->display();
 		} else {
-			$html = M()->table('yjl_project_supervision')->getField($field);
+			$html = $DB->table('yjl_project_supervision')->getField($field);
 				
 			$this->assign('html',$html);
 			$this->display('worker');
