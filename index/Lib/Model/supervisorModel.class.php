@@ -35,7 +35,7 @@ class supervisorModel extends Model{
 
 	function getPageList($f){
 		$page = max(1, intval($_GET['p']));
-		$length = 5;
+		$length = 20;
 
 		$count=$this->where("profession = $f")->count();
 		

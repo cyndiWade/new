@@ -27,7 +27,7 @@
                           </tr>
                           <tr>
                             <td class="free_trtd">电话</td>
-                            <td><input name="telephone" type="text" class="free_input" /></td>
+                            <td><input name="telephone" type="text" class="free_input" maxlength=11 onkeyup="this.value=this.value.replace(/\D/g,'')" /></td>
                           </tr>
                           <tr>
                             <td class="free_trtd">期望见面时间</td>
