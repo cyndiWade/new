@@ -26,7 +26,7 @@ class reserveAction extends Action{
 
 		if ($this->isPost()) {
 			$M = D('reserve');
-			$param = $_POST;
+			$param = htmlString($_POST);
 			if (empty($param['name'])) {
 				$this->error('请填写您的名字！');
 			}
