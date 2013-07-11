@@ -2,6 +2,7 @@
 class reserveAction extends Action{
 	function index()
 	{
+		
 		$sid = (int) $_GET['sid'];
 		if ($sid > 0) {
 			$supervisor = D('supervisor')->where("id = $sid")->find();
