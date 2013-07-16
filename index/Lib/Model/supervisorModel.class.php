@@ -30,6 +30,8 @@ class supervisorModel extends Model{
 		foreach ($resultSet as &$value) {
 			$value['addtime'] = date('y-m-d H:i', $value['addtime']);
 			$value['profession'] = self::getProfession($value['profession']);
+			$value['service_area'] = $value['service_area'] ? $value['service_area'] : '上海';
+			echo $value['service_area'];
 		}
 	}
 
@@ -39,7 +41,7 @@ class supervisorModel extends Model{
 
 		$count=$this->where("profession = $f")->count();
 		
-		$this->field('yjl_company.name as company,yjl_company.region,yjl_supervisors.*');
+		$this->field('yjl_company.name as company,yjl_supervisors.*');
 		$this->join('yjl_company ON yjl_company.id = yjl_supervisors.cid');
 		$this->where("profession = $f");
 		$this->order('reserve_month DESC,reserve_total DESC')->page($page.','.$length);

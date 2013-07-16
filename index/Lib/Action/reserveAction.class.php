@@ -41,7 +41,9 @@ class reserveAction extends Action{
 			if (empty($param['area'])) {
 				$this->error('请选择小区范围！');
 			}
-			
+			if (!$M->checkLimit($param['telephone'], $sid)) {
+				$this->error('一天内同一个监理师只能预约一次！');
+			}
 			
 			$param['sid'] = $sid;
 			$param['cid'] = $cid;

@@ -10,7 +10,7 @@
             <!-- <span class="free_top_right"><img src="__ROOT__/statics/index/images/ch.jpg" /></span> -->
        </div>
        <div class="free_content">
-<form action="" method="post" >
+<form action="" method="post" onsubmit="return checkForm();" >
 	<input type="hidden" name="ref" value="{$ref}" />
             <div class="free_content_left">
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -20,14 +20,14 @@
                           <tr>
                             <td class="free_trtd">姓名</td>
                             <td>
-                              <input name="name" type="text"  class="free_input"/>
+                              <input name="name" check="checkName" type="text"  class="free_input"/>
                               <input name="sex" type="radio" value="1" />女士
                               <input name="sex" type="radio" value="0" />先生
                            </td>
                           </tr>
                           <tr>
                             <td class="free_trtd">电话</td>
-                            <td><input name="telephone" type="text" class="free_input" maxlength=11 onkeyup="this.value=this.value.replace(/\D/g,'')" /></td>
+                            <td><input name="telephone" check="checkTelephone" type="text" class="free_input" maxlength=11 onkeyup="this.value=this.value.replace(/\D/g,'')" /></td>
                           </tr>
                           <tr>
                             <td class="free_trtd">期望见面时间</td>
@@ -115,6 +115,5 @@ $('#datetimepicker').datetimepicker({
         showMeridian: 1,
 		startDate: new Date()
 });
-
 
 </script>

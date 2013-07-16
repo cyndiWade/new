@@ -119,6 +119,7 @@ class supervisorAction extends baseAction{
 			'profession' => $profession,
 			'telephone' => htmlspecialchars($param['telephone']),
 			'case_info' => htmlspecialchars($param['case_info']),
+			'service_area' => $param['service_area'],
 			'status' => (int) $param['status'],
 			);
 

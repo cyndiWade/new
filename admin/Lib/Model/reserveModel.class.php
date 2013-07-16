@@ -29,6 +29,7 @@ class reserveModel extends Model{
 		$this->join(" yjl_company ON yjl_reserve.cid = yjl_company.id");
 		$this->join(" yjl_supervisors ON yjl_reserve.sid = yjl_supervisors.id");
 		$this->field("yjl_reserve.*,yjl_supervisors.name as supervisor,yjl_company.name as company");
+		$this->where("yjl_reserve.status <> -2");
 		$info = $this->order('addtime DESC')->page($page.','.$length)->select();
 
 		$data['data']=$info;

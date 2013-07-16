@@ -30,7 +30,11 @@
 			<td align="center">{$val.message}</td>
 			<td align="left">{$val.addtime}</td>
             <td align="center" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /><if condition="$val.status eq 1">已处理<else />未处理</if></td>
-            <td align="left"><a href="{:U('reserve/status?status=0&id=')}{$val.id}" style=" text-decoration:underline;">取消</a> &nbsp;&nbsp;<a href="{:U('reserve/status?status=1&id=')}{$val.id}" style=" text-decoration:underline;">处理完成</a></td>
+            <td align="left">
+            	<a href="{:U('reserve/status?status=0&id=')}{$val.id}" style=" text-decoration:underline;">取消</a> &nbsp;&nbsp;
+				<a href="{:U('reserve/status?status=1&id=')}{$val.id}" style=" text-decoration:underline;">处理完成</a>&nbsp;&nbsp;
+				<a href="{:U('reserve/status?status=-2&id=')}{$val.id}" onclick="return confirm('确定要删除该记录吗？');" style=" text-decoration:underline;">删除</a>
+			</td>
         </tr>
         </volist>
     	</tbody>

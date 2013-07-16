@@ -43,6 +43,7 @@ class supervisorAction extends Action{
 		if (empty($supervisor)) {
 			$this->error('参数不正确，没有该监理师！');
 		}
+		$supervisor['service_area'] = $supervisor['service_area'] ? $supervisor['service_area'] : '上海';
 		
 		//获取当前监理师下所有项目列表
 		$pid = $supervisor['id'];

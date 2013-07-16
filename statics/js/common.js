@@ -188,3 +188,44 @@ function roateimg(t){
 	$("#lightbox_img").mouseover();
 	$('#lightbox_i_r').val(ri);
 }
+
+//验证手机号码
+function checkTelephone(val)         
+{        
+   if (val.search(/^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/)!=-1) {  
+	   return true;    
+   } else {    
+	   alert('手机号码格式不正确，请输入十一位数字！');
+	   return false;
+   }
+} 
+
+//姓名验证
+function checkName(val)
+{    
+   if (val.search(/^[\u4e00-\u9fa5]{2,4}$/) !== -1) {
+	   return true;    
+   } else {    
+	   alert('姓名格式不正确，请输入中文名字！');
+	   return false;
+   }
+}
+
+function checkForm() {
+	var inputs = $("input[check]");
+	var func;
+	var val;
+	var result;
+	
+	for (var i=0;i < inputs.length;i++) {
+		func = $(inputs[i]).attr('check');
+		val = $(inputs[i]).val();
+		eval("result = " + func + "('"+ val +"')");
+		if (!result) {
+			inputs[i].focus();
+			return false;
+		}
+	}
+		
+	return true;
+}
