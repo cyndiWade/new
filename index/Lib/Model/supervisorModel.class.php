@@ -31,7 +31,6 @@ class supervisorModel extends Model{
 			$value['addtime'] = date('y-m-d H:i', $value['addtime']);
 			$value['profession'] = self::getProfession($value['profession']);
 			$value['service_area'] = $value['service_area'] ? $value['service_area'] : '上海';
-			echo $value['service_area'];
 		}
 	}
 
