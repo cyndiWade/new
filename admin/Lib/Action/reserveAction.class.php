@@ -38,7 +38,7 @@ class reserveAction extends baseAction{
 					D('supervisor')->where(array('id' => $data['sid']))->data(array('reserve_month' => $sup['reserve_month'] - 1))->save();
 				}
 			}
-			//$this->success($su['msg']);
+			$this->success($su['msg']);
 		} else {
 			$this->error($su['msg']);
 		}
