@@ -29,7 +29,16 @@ class reserveAction extends baseAction{
 		$status = intval($_GET['status']);
 		$su = $M->status($id, array('status' => $status));
 		if ($su['status'] == 1) {
-			$this->success($su['msg']);
+			if ($status == -2) {
+				//预约数量--
+				$data = $M->where(array('id' => $id))->find();
+				$sup = D('supervisor')->where(array('id' => $data['sid']))->find();
+				D('supervisor')->where(array('id' => $data['sid']))->data(array('reserve_total' => $sup['reserve_total'] - 1))->save();
+				if ($data['addtime'] > strtotime(date('Y-m-01 00:00:00'))) {
+					D('supervisor')->where(array('id' => $data['sid']))->data(array('reserve_month' => $sup['reserve_month'] - 1))->save();
+				}
+			}
+			//$this->success($su['msg']);
 		} else {
 			$this->error($su['msg']);
 		}

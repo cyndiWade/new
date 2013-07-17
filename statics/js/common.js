@@ -192,7 +192,7 @@ function roateimg(t){
 //验证手机号码
 function checkTelephone(val)         
 {        
-   if (val.search(/^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/)!=-1) {  
+   if (val.search(/^(1[358]\d{9})$/)!=-1) {  
 	   return true;    
    } else {    
 	   alert('手机号码格式不正确，请输入十一位数字！');
