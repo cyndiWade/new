@@ -74,6 +74,8 @@ class reserveAction extends Action{
 				
 				D('company')->where("id = $cid")->data($data)->save();
 				
+				sendMobileMsg(array('18918618060'), "业主" . $param['name'] . "提交了一个预约申请，手机号码是：" . $param['telephone']);
+				
 				$this->success('已成功提交预约信息！', $sid > 0 ? U('supervisor/index') : U('company/index'));
 			} else {
 				$this->error('信息提交失败！');
